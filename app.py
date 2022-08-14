@@ -25,7 +25,13 @@ def predict():
 
         url(r'^favicon\.ico$', RedirectView.as_view(url='/static/images/favicon.ico')),
     ]
+def okay(request):
+    return HttpResponse('pretend-binary-data-here', content_type='image/jpeg')
 
+urlpatterns = [
+    path('favicon.ico', okay),
+    
+] 
     return render_template('index.html', prediction_text="The Flower Species is {}".format(prediction))
 
 if __name__ == "__main__":
