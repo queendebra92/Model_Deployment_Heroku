@@ -1,8 +1,6 @@
 import numpy as np
 from flask import Flask, request, jsonify, render_template
 import pickle
-from django.views.generic import RedirectView
-from django.conf.urls import url
 
 # Create flask app
 app = Flask(__name__)
@@ -21,17 +19,7 @@ def predict():
     features = [np.array(float_features)]
     prediction = model.predict(features)
     
-    url_patterns = [
-
-        url(r'^favicon\.ico$', RedirectView.as_view(url='/static/images/favicon.ico')),
-    ]
-def okay(request):
-    return HttpResponse('pretend-binary-data-here', content_type='image/jpeg')
-
-urlpatterns = [
-    path('favicon.ico', okay),
-    
-] 
+   
     return render_template('index.html', prediction_text="The Flower Species is {}".format(prediction))
 
 if __name__ == "__main__":
